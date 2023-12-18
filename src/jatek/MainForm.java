@@ -93,21 +93,30 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void egyikGombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_egyikGombActionPerformed
-        masikGomb.setVisible(true);
         szoba = szoba.egyikIrany();
+        if(szoba instanceof MasikIrany){
+            MasikIrany tmp = (MasikIrany) szoba;
+            masikGomb.setText(tmp.masikSzoveg());
+        }
+        
         gombEvent();
     }//GEN-LAST:event_egyikGombActionPerformed
 
     private void masikGombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masikGombActionPerformed
-        szoba = szoba.masikIrany();
+        
+        if(szoba instanceof MasikIrany tmp){
+            szoba=(Szoba)tmp.masikIrany();
+            masikGomb.setText(tmp.masikSzoveg());
+        }
         gombEvent();
     }//GEN-LAST:event_masikGombActionPerformed
 
-    private void gombEvent(){
+    private void gombEvent(){    
         jTextArea1.insert(szoba.getNev()+"\r\n",0);
         egyikGomb.setText(szoba.egyikSzoveg());
-        masikGomb.setText(szoba.masikSzoveg());
+        //masikGomb.setText(szoba.masikSzoveg());
         jTextArea1.setCaretPosition(0);
+        masikGomb.setVisible(szoba instanceof MasikIrany);
     }
     /**
      * @param args the command line arguments

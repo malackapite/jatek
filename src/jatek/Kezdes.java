@@ -1,6 +1,6 @@
 package jatek;
 
-public class Kezdes extends Szoba{
+public class Kezdes extends Szoba implements MasikIrany{
 
     @Override
     public String getNev() {
@@ -9,14 +9,14 @@ public class Kezdes extends Szoba{
 
     @Override
     public Szoba egyikIrany() {
-        return null;
+        return new Sus();
     }
 
     @Override
     public Szoba masikIrany() {
-        return null;
+        return new Sussy();
     }
-
+    
     @Override
     public String egyikSzoveg() {
         return "balra";
@@ -24,7 +24,7 @@ public class Kezdes extends Szoba{
 
     @Override
     public String masikSzoveg() {
-        return "jobra";
+        return "jobbra";
     }
     
 }
