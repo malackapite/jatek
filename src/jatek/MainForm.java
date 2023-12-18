@@ -14,9 +14,11 @@ public class MainForm extends javax.swing.JFrame {
     
     public MainForm() {
         initComponents();
+        masikGomb.setVisible(false);
         
         szoba = new Start();
         jTextArea1.setText(szoba.getNev());
+        egyikGomb.setText(szoba.egyikSzoveg());
     }
 
     /**
@@ -30,8 +32,8 @@ public class MainForm extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        egyikGomb = new javax.swing.JButton();
+        masikGomb = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Játék");
@@ -43,17 +45,17 @@ public class MainForm extends javax.swing.JFrame {
         jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jButton1.setText("Egyik gomb");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        egyikGomb.setText("Egyik gomb");
+        egyikGomb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                egyikGombActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Másik gomb");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        masikGomb.setText("Másik gomb");
+        masikGomb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                masikGombActionPerformed(evt);
             }
         });
 
@@ -66,13 +68,13 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(egyikGomb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(masikGomb, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {egyikGomb, masikGomb});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,8 +83,8 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(egyikGomb)
+                    .addComponent(masikGomb))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -90,16 +92,23 @@ public class MainForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void egyikGombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_egyikGombActionPerformed
+        masikGomb.setVisible(true);
         szoba = szoba.egyikIrany();
-        jTextArea1.setText(szoba.getNev());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        gombEvent();
+    }//GEN-LAST:event_egyikGombActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void masikGombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masikGombActionPerformed
         szoba = szoba.masikIrany();
-        jTextArea1.setText(szoba.getNev());
-    }//GEN-LAST:event_jButton2ActionPerformed
+        gombEvent();
+    }//GEN-LAST:event_masikGombActionPerformed
 
+    private void gombEvent(){
+        jTextArea1.insert(szoba.getNev()+"\r\n",0);
+        egyikGomb.setText(szoba.egyikSzoveg());
+        masikGomb.setText(szoba.masikSzoveg());
+        jTextArea1.setCaretPosition(0);
+    }
     /**
      * @param args the command line arguments
      */
@@ -136,9 +145,9 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton egyikGomb;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton masikGomb;
     // End of variables declaration//GEN-END:variables
 }
