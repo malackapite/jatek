@@ -103,8 +103,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_egyikGombActionPerformed
 
     private void masikGombActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masikGombActionPerformed
-        
-        if(szoba instanceof MasikIrany tmp){
+        MasikIrany tmp= (MasikIrany) szoba;
+        if(szoba instanceof MasikIrany){
             szoba=(Szoba)tmp.masikIrany();
             masikGomb.setText(tmp.masikSzoveg());
         }
